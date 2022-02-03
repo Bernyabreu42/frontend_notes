@@ -1,0 +1,226 @@
+*,
+*::after,
+*::before{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif
+}
+
+.page{
+  display: grid;
+  grid-template-rows: 100px 1fr 40px ;
+  min-height: 100vh;
+  background: #efefef;
+  width: 100%;
+}
+
+.header{
+  background: #283142;
+  display: flex;
+  align-items: center;
+  color: aliceblue;
+}
+
+.container{
+  position: relative;
+  max-width: 1080px;
+  width: 100%;
+  margin: auto;
+  padding: 0 2rem;
+}
+
+.main{
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.main section{
+display: flex;
+gap: 1em;
+flex-wrap: wrap;
+}
+
+.note{
+  width: 230px;
+  height: 250px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  border-radius: 5px;
+}
+
+ input{
+  width: 100%;
+  border: none;
+  font-size: 1.3em;
+  outline: none;
+  font-weight: 300;
+}
+
+.note h3{
+  font-size: .8em;
+  font-weight: 400;
+  border-bottom: 1px solid #ccc;
+  line-height: 30px;
+  color: rgb(70, 70, 70);
+}
+
+input::placeholder{
+color: #ccc;
+}
+
+textarea{
+  border: none;
+  outline: none;
+  resize: none;
+  height: 100px;
+}
+
+textarea::placeholder{
+  color: #ccc;
+  font-weight: 300;
+  padding: 5px 0;
+}
+
+.actions{
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  color: #ccc;
+}
+
+.actions span{
+cursor: pointer;
+}
+
+.btn_Create{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  height: 50px;
+  width: 50px;
+  background: #ffffff;
+  border: none;
+  color: #283142;
+  position: absolute;
+  bottom: -53px;
+  right: 1rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+
+
+
+/*--LOGIN CSS-------------------------------------------------*/
+.login{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.login form{
+ display: flex;
+ flex-direction: column;
+ gap: 1em;
+}
+
+.login form input{
+ padding: 15px;
+ border-radius: 5px;
+ outline: none;
+ font-size: .8rem;
+ outline-color: #283142;
+ border: 2px #fff solid;
+ position: relative;
+}
+
+.login form input:focus{
+  background: #fff;
+  border: 2px #283142 solid;
+}
+
+.login form input::placeholder{
+ font-size: 1rem;
+}
+
+.login form button{
+ width: 150px;
+ padding: 10px;
+ font-size: 1em;
+ background: #283142;
+ border-radius: 5px;
+ color: #ccc;
+ border: none;
+ cursor: pointer;
+}
+.login form button:hover{
+  background:#5055de ;
+}
+
+.login span{
+  cursor: pointer;
+  width: max-content;
+}
+
+.login span:hover{
+  color:#5055de ;
+}
+
+.input-pass{
+position: relative;
+}
+
+.input-pass span{
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
+.error{
+  width: max-content;
+  border-left: 10px #fc475d solid ;
+  background: #ffe1e3 ;
+  padding: 10px;
+  border-radius: 5px;
+  color: #fc475d;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+
+/*Breakpoints__________________________________________________________*/
+
+
+@media only screen and (max-width: 1320px) {
+ 
+}
+
+@media only screen and (max-width: 1140px) {
+ 
+}
+
+@media only screen and (max-width: 960px) {
+  
+} 
+
+@media only screen and (max-width: 768px) {
+
+} 
+
+@media only screen and (max-width: 540px) {
+ .note{
+   width: 100%;
+ }
+}
