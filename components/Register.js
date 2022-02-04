@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export default function Logout({ set }) {
+export default function Register({ handler }) {
 
   const [showPass, setShowPass] = useState(false)
   const [user, setUser] = useState(null)
@@ -15,7 +15,6 @@ export default function Logout({ set }) {
       password: form.pass.value
     }
     setUser(user);
-    console.log(user);
   }
 
 
@@ -25,7 +24,7 @@ export default function Logout({ set }) {
   }
 
   const handlerClick = () => {
-    set(true)
+    handler(true)
   }
 
   return (

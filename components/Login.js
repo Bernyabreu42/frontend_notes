@@ -2,10 +2,12 @@ import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import AuthContext from "../context/useContext"
 
-export default function Login({ set }) {
+export default function Login({ handler }) {
 
-  const { token, setToken } = useContext(AuthContext)
+  // context
+  const { setUser, setToken } = useContext(AuthContext)
 
+  // state
   const [showPass, setShowPass] = useState(false)
   const [error, setError] = useState(false)
   const [data, setData] = useState({
@@ -13,7 +15,8 @@ export default function Login({ set }) {
     password: ''
   })
 
-  const handlerClick = () => set(false)
+  // function hanler
+  const handlerClick = () => handler(false)
   const handleShowPassword = () => setShowPass(!showPass)
 
 
@@ -29,22 +32,30 @@ export default function Login({ set }) {
 
 
 
-
   const login = async () => {
 
     try {
       const res = await axios.post('/login', data)
 
-      // localStorage.setItem("token", res.data.token);
-      // setToken(req.data.token);
+      setUser(res.data)
+      setData({
+        email: '',
+        password: ''
+      })
+
     } catch (error) {
-      console.log(error);
+
       setError(true);
+
+      // close alert after 5 seconds
       setTimeout(() => {
         setError(false);
       }, 5000);
+
     }
   }
+
+
 
 
   return (
@@ -53,7 +64,7 @@ export default function Login({ set }) {
       <form onSubmit={handlerLogin}>
         <h1>Sing in</h1>
         {
-          error ? <label className="error">The email address or password is incorrect</label> : ""
+          error ? <label className="error">The email address or password is incorrect</label> : ''
         }
         <input
           type="email"
