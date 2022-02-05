@@ -1,25 +1,27 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import ShowLoginOrRegister from '../components/ShowLoginOrRegister';
-import { AuthProvider } from '../context/useContext';
+import AuthContext from '../context/useContext';
+import Home from './home'
 
 export default function index() {
 
-
-
+  const { validated } = useContext(AuthContext)
 
   return (
-    <AuthProvider>
-      <Layout>
+    <Layout>
 
-        {
-          <ShowLoginOrRegister />
-        }
+      {
+        validated
+          ? <Home />
+          : <ShowLoginOrRegister />
+      }
 
-      </Layout>
-    </AuthProvider>
+    </Layout>
 
   );
+
+
 }
 
 

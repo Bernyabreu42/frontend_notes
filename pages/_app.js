@@ -2,10 +2,15 @@
 
 import '../style/style.css'
 import axios from 'axios'
+import { AuthProvider } from '../context/useContext'
 axios.defaults.baseURL = 'http://localhost:3001/api'
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <AuthProvider>
+      <Component {...pageProps} />
+    </AuthProvider>
+  )
 }
 
 // Only uncomment this method if you have blocking data requirements for

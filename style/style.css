@@ -118,7 +118,20 @@ cursor: pointer;
 }
 
 
+.not_Notes{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+  font-size: 2rem;
+}
 
+.not_Notes img{
+ width: 150px;
+}
 
 /*--LOGIN CSS-------------------------------------------------*/
 .login{

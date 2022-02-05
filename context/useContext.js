@@ -9,34 +9,43 @@ const AuthProvider = ({ children }) => {
 
   // state
   const [user, setUser] = useState(null)
+  const [token, setToken] = useState(null)
+  const [validated, setValidated] = useState(false)
 
   useEffect(() => {
 
     const findUser = async () => {
-
       try {
         // fetch token in localstorage
         localStorage.getItem('token') || localStorage.setItem('token', null);
+        localStorage.getItem('user') || localStorage.setItem('user', null);
 
         //if there is no register token in localstorage
-        if (localStorage.getItem('token') === 'null' && user !== null) {
+        if (localStorage.getItem('token') === 'null' && token !== null) {
           //if it exists we pass a value to token
-          localStorage.setItem('token', JSON.stringify(user))
+          localStorage.setItem('token', token)
+          setValidated(true)
+        }
+
+        if (user !== null) {
+          localStorage.setItem('user', JSON.stringify(user))
         }
 
       } catch (error) {
         console.log(error);
+        setValidated(false)
       }
     }
 
-    if (user) {
+    if (token) {
       findUser()
+      setValidated(true)
     }
+  }, [token])
 
-  }, [user])
 
   // variables to return in the context
-  const data = { user, setUser }
+  const data = { user, setUser, token, setToken, validated, setValidated }
 
 
   return (

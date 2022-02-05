@@ -1,4 +1,4 @@
-import axios from "axios";
+import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react"
 import AuthContext from "../context/useContext";
 import Login from "./Login";
@@ -6,32 +6,22 @@ import Register from "./Register";
 
 export default function ShowLoginOrRegister() {
 
+  const { token, setToken, validated } = useContext(AuthContext)
+  const [showOr, setShowOr] = useState(true)
 
-  const [login, setLogin] = useState(true)
-  const [auth, setAuth] = useState(null)
+  const router = useRouter()
 
   useEffect(async () => {
+    const sendToken = localStorage.getItem('token')
+    setToken(sendToken);
 
-    const user = JSON.parse(localStorage.getItem('token'))
-    console.log(user);
-    const res = await axios.get('/users')
-    res.data.map(usuario => {
-      if (usuario.email === user.email) {
-        setAuth(user)
-      }
-    })
-
-
-  }, [])
+  }, [token])
 
 
 
-
-  return auth === null ? login
-    ? <Login handler={setLogin} />
-    : <Register handler={setLogin} />
-    : null
-
+  return showOr
+    ? <Login handler={setShowOr} />
+    : <Register handler={setShowOr} />
 
 
 }

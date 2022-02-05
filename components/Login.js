@@ -19,7 +19,6 @@ export default function Login({ handler }) {
   const handlerClick = () => handler(false)
   const handleShowPassword = () => setShowPass(!showPass)
 
-
   const handleChange = (event) => setData({
     ...data,
     [event.target.name]: event.target.value
@@ -36,12 +35,15 @@ export default function Login({ handler }) {
 
     try {
       const res = await axios.post('/login', data)
+      if (res !== null) {
+        setUser(res.data)
+        setToken(res.data.token);
 
-      setUser(res.data)
-      setData({
-        email: '',
-        password: ''
-      })
+        setData({
+          email: '',
+          password: ''
+        })
+      }
 
     } catch (error) {
 
