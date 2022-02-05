@@ -1,14 +1,20 @@
 import axios from "axios";
 
+let token = null
+const setToken = newToken => {
+  token = `Bearer ${newToken}`
+}
+
+
 const getAllNote = async () => {
   const request = axios.get('/notes')
   return request.then(({ data }) => data)
 }
 
-const CreateNote = (newObject, { token }) => {
+const CreateNote = (newObject) => {
   const config = {
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: token
     }
   }
 
@@ -17,7 +23,13 @@ const CreateNote = (newObject, { token }) => {
 }
 
 const updateNote = (id, newObject) => {
-  const request = axios.put(`${baseUrl}/${id}`, newObject)
+  const config = {
+    headers: {
+      Authorization: token
+    }
+  }
+
+  const request = axios.put(`/notes/${id}`, newObject, config)
   return request.then(response => response.data)
 }
 
@@ -31,4 +43,4 @@ const deleteNote = () => {
   return request.then(response => response.data)
 }
 
-export default { getAllNote, CreateNote, updateNote, findById, deleteNote }
+export default { getAllNote, CreateNote, updateNote, findById, deleteNote, setToken }

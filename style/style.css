@@ -92,7 +92,7 @@ textarea::placeholder{
   display: flex;
   gap: 1em;
   justify-content: center;
-  color: #ccc;
+  color: rgb(51, 50, 50);
 }
 
 .actions span{
@@ -131,6 +131,24 @@ cursor: pointer;
 
 .not_Notes img{
  width: 150px;
+}
+
+.inputColor{
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 1em;
+}
+
+.inputColor input{
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  padding: 5px;
+}
+
+.inputColor span{
+cursor: pointer;
 }
 
 /*--LOGIN CSS-------------------------------------------------*/
