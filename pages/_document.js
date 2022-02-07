@@ -12,6 +12,8 @@ class MyDocument extends Document {
         <Head >
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon1.png" />
+          <meta name="theme-color" content="#283142" />
         </Head>
         <body>
           <Main />

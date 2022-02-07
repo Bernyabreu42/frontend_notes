@@ -7,7 +7,7 @@ export default function ActionEdit({ handlerColor, handlerEdit, handlerCancel, h
   if (color) {
     return (
       <div className='inputColor'>
-        <input type="text" placeholder='#AED6F1 or red' onChange={(e) => handlerColor(e.target.value)} />
+        <input type="text" placeholder='#aed6f1 or red' onChange={(e) => handlerColor(e.target.value)} />
         <span className="material-icons" onClick={() => setColor(false)}>
           cancel
         </span>

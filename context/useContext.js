@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import noteService from '../services/notes'
 
 // create context
 const AuthContext = createContext()
@@ -11,6 +12,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [token, setToken] = useState(null)
   const [validated, setValidated] = useState(false)
+  const [created, setCreated] = useState(false)
 
   useEffect(() => {
 
@@ -36,16 +38,17 @@ const AuthProvider = ({ children }) => {
         setValidated(false)
       }
     }
-
     if (token) {
       findUser()
       setValidated(true)
+      noteService.setToken(token)
     }
+
   }, [token])
 
 
   // variables to return in the context
-  const data = { user, setUser, token, setToken, validated, setValidated }
+  const data = { user, setUser, token, setToken, validated, setValidated, created, setCreated }
 
 
   return (

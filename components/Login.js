@@ -1,11 +1,13 @@
 import axios from "axios"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import AuthContext from "../context/useContext"
 
 export default function Login({ handler }) {
 
   // context
   const { setUser, setToken } = useContext(AuthContext)
+
+  const refForm = useRef()
 
   // state
   const [showPass, setShowPass] = useState(false)
@@ -29,12 +31,22 @@ export default function Login({ handler }) {
     login()
   }
 
+  useEffect(() => {
+    const correo = localStorage.getItem('correo')
+    refForm.current.email.value = correo
+    setData({ email: correo })
+  }, [])
+
 
 
   const login = async () => {
 
     try {
-      const res = await axios.post('/login', data)
+      const obj = {
+        email: data.email.toLowerCase(),
+        password: data.password.toLowerCase()
+      }
+      const res = await axios.post('/login', obj)
       if (res !== null) {
         setUser(res.data)
         setToken(res.data.token);
@@ -63,7 +75,7 @@ export default function Login({ handler }) {
   return (
     <div className="login">
 
-      <form onSubmit={handlerLogin}>
+      <form ref={refForm} onSubmit={handlerLogin}>
         <h1>Sing in</h1>
         {
           error ? <label className="error">The email address or password is incorrect</label> : ''

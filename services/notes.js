@@ -18,7 +18,8 @@ const CreateNote = (newObject) => {
     }
   }
 
-  const request = axios.post(baseUrl, newObject, config)
+  const request = axios.post('/notes', newObject, config)
+
   return request.then(response => response.data)
 }
 
@@ -34,12 +35,18 @@ const updateNote = (id, newObject) => {
 }
 
 const findById = (id) => {
-  const request = axios.get(`${baseUrl}/${id}`)
+  const request = axios.get(`/notes/${id}`)
   return request.then(response => response.data)
 }
 
-const deleteNote = () => {
-  const request = axios.delete(`${baseUrl}/${id}`)
+const deleteNote = (id) => {
+  const config = {
+    headers: {
+      Authorization: token
+    }
+  }
+
+  const request = axios.delete(`/notes/${id}`, config)
   return request.then(response => response.data)
 }
 
